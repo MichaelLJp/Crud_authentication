@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang ="es">
+<head>
+    <meta charset= "UFT-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{%block titulo%}Listado de Contactos{%endblock titulo%}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+    
+{%block cuerpo%}
+<div class= "container">
+    <h1>Listado de Libros</h1>
+    <table class="table table-striped" border="2">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Autor</th>
+                <th>Genero</th>
+                <th>OPCION</th>
+            </tr>
+            {% for l in libros %}
+            <tr>
+                <td>{{ l.nombre}}</td>
+                <td>{{ l.autor }}</td>
+                <td>{{ l.genero }}</td>
+                <td><a href=>EDITAR</a> <a href=>ELIMINAR</a></td>
+            </tr>
+            {% endfor %}
+    </table>
+<div align="left" class="btn_crear mb-3">
+    <a href="crear_persona" type="button" class="btn btn-primary">Crear</a>
+</div>
+</div>
+{% endblock cuerpo %}
+
+<div id="principal">
+    <br> 
+        <div Class="container">
+        {% block contenido %}
+
+        {% endblock %}
+
+    </div>
+
+</html>
