@@ -12,11 +12,11 @@
     <div class="conainer">
         <h2>Registro de usuario</h2>
 
-        <form action="" method="POST">
+        <form method="POST">
             {% csrf_token%}
 
                 <table class ="table">
-                    {{form.as_table}}
+                    {{form.as_p}}
                 </table>
 
             <input type="reset" value="Limpiar">

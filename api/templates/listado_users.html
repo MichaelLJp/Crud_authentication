@@ -1,14 +1,3 @@
-{% load static %}
-
-{% block javascript %}
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <script src= "{% static '/js/confirmacion.js'%}"></script>
-
-{% endblock %}
-
-
-
-
 <!DOCTYPE html>
 <html lang ="es">
 <head>
@@ -23,30 +12,26 @@
     
 {%block cuerpo%}
 <div class= "container">
-    <h1>Listado de Libros</h1>
-    <div align="right" class="btn_crear mb-3">
-        <a href="{% url 'logout' %}" type="button" class="btn btn-primary">Logout</a>
-    </div>
+    <h1>Listado de Usuarios/h1>
     <table class="table table-striped" border="2">
         <thead>
             <tr>
                 <th>Nombre</th>
-                <th>Autor</th>
+                <th>Correo</th>
                 <th>Genero</th>
                 <th>OPCION</th>
             </tr>
-            {% for l in libros %}
+            {% for u in users %}
             <tr>
-                <td>{{ l.nombre}}</td>
-                <td>{{ l.autor }}</td>
-                <td>{{ l.genero }}</td>
-                <td><a href="{% url 'editar_libro' l.id %}">EDITAR</a> <a href="#" onclick="confirmarEliminacion({{l.id}})">ELIMINAR</a></td>
+                <td>{{ u.username}}</td>
+                <td>{{ u.email }}</td>
+                <td>{{ u.genero }}</td>
+                <td><a href=>EDITAR</a> <a href=>ELIMINAR</a></td>
             </tr>
             {% endfor %}
     </table>
 <div align="left" class="btn_crear mb-3">
-    <a href="{% url 'libro_crear'%}" type="button" class="btn btn-primary">Crear</a>
-    <a href="" type="button" class="btn btn-primary">Admin</a>
+    <a href="crear_persona" type="button" class="btn btn-primary">Crear</a>
 </div>
 </div>
 {% endblock cuerpo %}

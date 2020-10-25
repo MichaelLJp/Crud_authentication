@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from rest_framework import generics
 from django.urls import reverse_lazy
+from django.views.generic import CreateView,DeleteView, ListView, UpdateView
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
@@ -17,9 +18,21 @@ from rest_framework.response import Response
 from .models import Persona, Libro
 from .serializers import PersonaSerializer
 from .forms import CustomUserForm, LibroForm
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+from django.views.generic import CreateView
+
 
 def inicio(request):
     return render(request,'base.html')
+
+
+def listado_usuarios(request):
+    users = User.objects.all()
+    data = {
+        'users':users
+    }
+    return render(request, 'listado_users.html',data)
 
 def listado_books(request):
     libros = Libro.objects.all()
@@ -28,41 +41,44 @@ def listado_books(request):
     }
     return render(request,'listado_libros.html',data)
 
+def editar_book(request,id):
+    libro = Libro.objects.get(id=id)
+    data = {
+            'form':LibroForm(instance=libro)
+        }
+    
+    if request.method == 'POST':
+        formulario = LibroForm(request.POST, instance =libro)
+        if formulario.is_valid():
+            formulario.save()
+            data['mensaje']= "Guardado correctamente"
+            data['form']=formulario
+            return redirect('libro_list')
+    return render(request,'edit_libro.html',data) 
+
 def nuevo_book(request):
     data ={
-        'form':LibroForm()
+        'form': LibroForm()
     }
     if request.method == 'POST':
         formulario = LibroForm(request.POST)
         if formulario.is_valid():
             formulario.save()
             data['mensaje']= "Guardado correctamente"
-  
+            return redirect('libro_list')
     return render(request,'nuevo_libro.html',data) 
 
-def editar_book(request, id):
-    libro = Libro.objects.get(id=id)
-    if request.method == 'GET':
-        form = LibroForm(instance = libro) 
-        data ={
-            'form': form
-        }
-    else:
-        form =LibroForm(request.POST, instance = libro)
-        data = {
-            'form': form
-        }
-        if form.is_valid():
-            form.save()
-            return redirect('listado_libros')
-    return render(request,'edit_libro.html',data) 
+def eliminar_book(request,id):
+    libro = Libro.objects.get(id = id)
+    libro.delete()
+    return redirect('libro_list')
+    return render(request,'eliminar_libro.html')
+
 
 def registro_usuario(request):
     data = {
         'form':CustomUserForm()
     }
-    
-
     if request.method =='POST':
         formulario = CustomUserForm(request.POST)
         if formulario.is_valid():
