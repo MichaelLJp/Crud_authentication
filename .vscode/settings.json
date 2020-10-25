@@ -1,0 +1,4 @@
+{
+    "python.workspaceSymbols.tagFilePath": "\"python.linting.pylintEnabled\": falso",
+    "python.linting.enabled": true
+}
