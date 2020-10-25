@@ -1,27 +1,26 @@
 {% load crispy_forms_tags%}
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
 {% block contenido %}
 
-<div align="center" class= "container-fluid">
-<h2>Nuevo Libro</h2>
+<div align="center" class= "container">
+    <h2>Nuevo Usuario</h2>
     <div class="container">
-    
         <form action="" method="POST">
             {% csrf_token %}
-            <table class ="table">
-        
-                {{form|crispy}}
-        
+            <table class ="table table-bordered">
+
+                    {{form|crispy}}
             </table>
-            <input type="reset"  class="btn btn-secondary" value="Limpiar">
-            <input type= "submit"  class="btn btn-success" value="Guardar">
-            <a href="{% url 'libro_list'%}" type="button" class="btn btn-primary">Volver</a>
-        
+            <input type="reset" class="btn btn-secondary"value="Limpiar">
+            <input type= "submit" class="btn btn-success" value="Guardar">
+            <a href="{% url 'list_users'%}" type="button" class="btn btn-primary">Volver</a>
+
         </form>
+
     </div>
 
 </div>
+
 {{mensaje}}
 
 {%endblock %}

@@ -1,0 +1,25 @@
+{% load crispy_forms_tags%}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<div align="center" class= "container">>
+    <h2>Editar User</h2>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+    <table class ="table">
+
+        {{form | crispy}}
+
+
+    </table>
+    <input type="reset" class="btn btn-primary" value="Limpiar">
+    <input type= "submit" class="btn btn-success" value="Editar">
+    <a href="{% url 'list_users'%}" type="button" class="btn btn-primary">Volver</a>
+
+</form>
+
+
+</div>
+
+{{mensaje}}
+

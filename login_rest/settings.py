@@ -41,8 +41,11 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_auth',
     'api',
-]
+    'crispy_forms',
 
+]
+CRISPY_TEMPLATE_PACK = 'uni_form'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

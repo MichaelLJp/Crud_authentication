@@ -16,7 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.authtoken import views
-from api.views import Login,Logout,inicio,registro_usuario, listado_books,nuevo_book,editar_book,eliminar_book
+from api.views import Login,Logout,inicio,registro_usuario, listado_books,nuevo_book,editar_book,eliminar_book,listado_usuarios
+from api.views_users import nuevo_user,editar_user,eliminar_user
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',inicio,name='base'),
@@ -30,6 +31,11 @@ urlpatterns = [
     path('nuevo-libro/',nuevo_book,name='libro_crear'),
     path('editar-libro/<id>/', editar_book, name= "editar_libro"),
     path('eliminar-libro/<id>/',eliminar_book, name = 'eliminar_libro'),
+
+    path('listar-user/',listado_usuarios,name='list_users'),
+    path('nuevo-user/',nuevo_user,name='new_user'),
+    path('editar-user/<id>/', editar_user, name= "edit_user"),
+    path('eliminar-user/<id>/',eliminar_user, name = 'eliminar_user'),
     
     ]
 

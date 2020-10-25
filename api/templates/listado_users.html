@@ -1,37 +1,44 @@
-<!DOCTYPE html>
-<html lang ="es">
-<head>
-    <meta charset= "UFT-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{%block titulo%}Listado de Contactos{%endblock titulo%}</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+{% load static %}
+
+{% block javascript %}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src= "{% static '/js/confirmacion_user.js'%}"></script>
+{% endblock %}
+
+
+{% load crispy_forms_tags%}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 </head>
 <body>
     
 {%block cuerpo%}
 <div class= "container">
-    <h1>Listado de Usuarios/h1>
+    <h1>Listado de Usuarios</h1>
     <table class="table table-striped" border="2">
         <thead>
             <tr>
+                <th>Username</th>
                 <th>Nombre</th>
-                <th>Correo</th>
-                <th>Genero</th>
+                <th>Apellido</th>
+                <th>email</th>
                 <th>OPCION</th>
             </tr>
             {% for u in users %}
             <tr>
                 <td>{{ u.username}}</td>
+                <td>{{ u.first_name }}</td>
+                <td>{{ u.last_name }}</td>
                 <td>{{ u.email }}</td>
-                <td>{{ u.genero }}</td>
-                <td><a href=>EDITAR</a> <a href=>ELIMINAR</a></td>
+                <div class="float-center">
+                    <td><a href="{% url 'edit_user' u.id %}"  class="btn btn-dark" >EDITAR</a> <a  href="#" onclick="confirmarEliminacion2({{u.id}})"  class="btn btn-danger">ELIMINAR</a></td>
+                </div>
             </tr>
             {% endfor %}
     </table>
 <div align="left" class="btn_crear mb-3">
-    <a href="crear_persona" type="button" class="btn btn-primary">Crear</a>
+    <a href="{% url 'new_user'%}" type="button" class="btn btn-success">Crear</a>
+    <a href="{% url 'libro_list'%}" type="button" class="btn btn-primary">Volver</a>
 </div>
 </div>
 {% endblock cuerpo %}
